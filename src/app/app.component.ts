@@ -46,6 +46,13 @@ export class AppComponent {
     return this.articulos.find(e => e.codigo === codigo);
   }
   
+  seleccionar(codigo: number){
+    let articulo:  any = this.buscarArticulo(codigo) ;
+
+    this.codigo = articulo.codigo;
+    this.descripcion = articulo.descripcion;
+    this.precio = articulo.precio;
+  }
 
   modificar(){
 
