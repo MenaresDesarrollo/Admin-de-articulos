@@ -18,14 +18,33 @@ export class AppComponent {
       return;
     }
 
+    if (this.buscarArticulo(this.codigo)) {
+      alert('No se puede agregar este articulo por que ya existe otro con el mismo codigo');
+      return;
+    }
+
+    alert('El articulo se agrego de forma correcta')
+
     let articulo: Articulo = new Articulo(this.codigo, this.descripcion, this.precio);
     this.articulos.push(articulo);
 
-    alert('El articulo se agrego de forma correcta')
+    this.codigo = 0;
+    this.descripcion = '';
+    this.precio = 0;
+
   }
   
+  borrar(codigo: number){
+    const resultado = confirm('¿Desea eliminar este articulo?')
+    
+    if (resultado) {
+      this.articulos = this.articulos.filter(e => e.codigo !== codigo);
+    }
+  }
   
-  
+  buscarArticulo(codigo: number){
+    return this.articulos.find(e => e.codigo === codigo);
+  }
   
 
   modificar(){
