@@ -47,7 +47,7 @@ export class AppComponent {
   }
   
   seleccionar(codigo: number){
-    let articulo:  any = this.buscarArticulo(codigo) ;
+    let articulo:  any = this.buscarArticulo(codigo);
 
     this.codigo = articulo.codigo;
     this.descripcion = articulo.descripcion;
@@ -55,6 +55,28 @@ export class AppComponent {
   }
 
   modificar(){
+    if (!this.codigo) {
+      alert('Debe especificar un codigo');
+      return;
+    }
+    let articulo:  any = this.buscarArticulo(this.codigo);
 
+    if(!articulo){
+      alert(' no existe articulo con este codigo!');
+      return;
+    }
+
+    articulo.descripcion = this.descripcion
+    articulo.precio= this.precio;
+
+    this.limpiarCampos();
+    alert('El articulo se actualizo de forma correcta');
   }
+
+  limpiarCampos(){
+    this.codigo = 0;
+    this.descripcion = '';
+    this.precio = 0;
+  }
+
 }
